@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package Metadata">
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <PackageId>DebugTimer</PackageId>
     <Title>DebugTimer</Title>
     <Description>A simple source-only timer for development diagnostics.</Description>
@@ -33,12 +33,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="@(Compile)">
+    <Compile Update="@(Compile)" Visible="false">
       <Pack>true</Pack>
       <PackagePath>$(ContentTargetFolders)\cs\any\$(PackageId)\%(RecursiveDir)</PackagePath>
     </Compile>
     
-    <EmbeddedResource Update="@(EmbeddedResource)">
+    <EmbeddedResource Update="@(EmbeddedResource)" Visible="false">
       <Pack>true</Pack>
       <PackagePath>$(ContentTargetFolders)\any\any\$(PackageId)\%(RecursiveDir)</PackagePath>
     </EmbeddedResource>
