@@ -155,6 +155,15 @@ DebugTimer.Initialize((template, source, elapsedMs, key) =>
 });
 ```
 
+Serilog example:
+
+```csharp
+using DebugTimer;
+using Serilog;
+
+DebugTimer.Initialize(Log.Information);
+```
+
 ## Notes
 
 - Use matching `Start` / `Stop` tags and caller context.
