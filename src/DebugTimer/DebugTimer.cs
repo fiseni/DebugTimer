@@ -31,7 +31,7 @@
         /// <param name="filePath">The caller file path, provided automatically by the compiler.</param>
         /// <param name="caller">The caller member name, provided automatically by the compiler.</param>
         [Conditional("DEBUG_TIMER")]
-        public static void Start(int tag = 1, [CallerFilePath] string filePath = "", [CallerMemberName] string caller = "")
+        public static void Start(int tag, [CallerFilePath] string filePath = "", [CallerMemberName] string caller = "")
             => GenerateKeyAndStart(Path.GetFileNameWithoutExtension(filePath), caller, tag.ToString());
 
         /// <summary>
@@ -41,7 +41,7 @@
         /// <param name="filePath">The caller file path, provided automatically by the compiler.</param>
         /// <param name="caller">The caller member name, provided automatically by the compiler.</param>
         [Conditional("DEBUG_TIMER")]
-        public static void Stop(int tag = 1, [CallerFilePath] string filePath = "", [CallerMemberName] string caller = "")
+        public static void Stop(int tag, [CallerFilePath] string filePath = "", [CallerMemberName] string caller = "")
             => GenerateKeyAndStop(Path.GetFileNameWithoutExtension(filePath), caller, tag.ToString());
 
 
