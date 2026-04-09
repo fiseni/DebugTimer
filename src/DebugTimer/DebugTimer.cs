@@ -1,4 +1,4 @@
-﻿namespace DebugTimer
+﻿namespace Pozitron.Diagnostics
 {
     using System;
     using System.Collections.Concurrent;

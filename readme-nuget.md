@@ -36,7 +36,7 @@ If needed, you can define `DEBUG_TIMER` manually in your project.
 ### Basic usage
 
 ```csharp
-using DebugTimer;
+using Pozitron.Diagnostics;
 
 public sealed class UserService
 {
@@ -60,7 +60,7 @@ DebugTimer - Elapsed:       12 ms | UserService - GetUsers
 ### Usage with int tag
 
 ```csharp
-using DebugTimer;
+using Pozitron.Diagnostics;
 
 public sealed class ReportService
 {
@@ -88,7 +88,7 @@ DebugTimer - Elapsed:       31 ms | ReportService - BuildReport - 1
 ### Usage with string tag
 
 ```csharp
-using DebugTimer;
+using Pozitron.Diagnostics;
 
 public sealed class ImportService
 {
@@ -116,7 +116,7 @@ DebugTimer - Elapsed:       31 ms | ReportService - BuildReport - Outer
 ### Global key usage across different classes/methods
 
 ```csharp
-using DebugTimer;
+using Pozitron.Diagnostics;
 
 public sealed class JobCoordinator
 {
@@ -147,7 +147,7 @@ DebugTimer - Elapsed:      203 ms | JobPipeline - 42
 ### Custom logger
 
 ```csharp
-using DebugTimer;
+using Pozitron.Diagnostics;
 
 DebugTimer.Initialize((template, source, elapsedMs, key) =>
 {
@@ -158,7 +158,7 @@ DebugTimer.Initialize((template, source, elapsedMs, key) =>
 Serilog example:
 
 ```csharp
-using DebugTimer;
+using Pozitron.Diagnostics;
 using Serilog;
 
 DebugTimer.Initialize(Log.Information);

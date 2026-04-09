@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Pozitron.Diagnostics;
+using System;
 using System.Reflection;
 using System.Threading;
 using Xunit;
 
-namespace DebugTimer.Tests;
+namespace Tests;
 
 [CollectionDefinition("DebugTimerNonParallel", DisableParallelization = true)]
 public class DebugTimerCollectionDefinition
@@ -21,7 +22,7 @@ public class DebugTimerTests
         long elapsed = -1;
         string? loggedKey = null;
 
-        global::DebugTimer.DebugTimer.Initialize((template, src, ms, key) =>
+        DebugTimer.Initialize((template, src, ms, key) =>
         {
             messageTemplate = template;
             source = src;
@@ -31,9 +32,9 @@ public class DebugTimerTests
 
         var key = "global-key-" + Guid.NewGuid().ToString("N");
 
-        global::DebugTimer.DebugTimer.StartGlobal(key);
+        DebugTimer.StartGlobal(key);
         Thread.Sleep(10);
-        global::DebugTimer.DebugTimer.StopGlobal(key);
+        DebugTimer.StopGlobal(key);
 
         Assert.Equal("{DebugTimer} - Elapsed: {DebugTimerElapsed,8} ms | {DebugTimerKey}", messageTemplate);
         Assert.Equal("DebugTimer", source);
@@ -46,9 +47,9 @@ public class DebugTimerTests
     {
         var callCount = 0;
 
-        global::DebugTimer.DebugTimer.Initialize((_, _, _, _) => callCount++);
+        DebugTimer.Initialize((_, _, _, _) => callCount++);
 
-        global::DebugTimer.DebugTimer.StopGlobal("missing-" + Guid.NewGuid().ToString("N"));
+        DebugTimer.StopGlobal("missing-" + Guid.NewGuid().ToString("N"));
 
         Assert.Equal(0, callCount);
     }
@@ -59,11 +60,11 @@ public class DebugTimerTests
         var callCount = 0;
         var key = "single-stop-" + Guid.NewGuid().ToString("N");
 
-        global::DebugTimer.DebugTimer.Initialize((_, _, _, _) => callCount++);
+        DebugTimer.Initialize((_, _, _, _) => callCount++);
 
-        global::DebugTimer.DebugTimer.StartGlobal(key);
-        global::DebugTimer.DebugTimer.StopGlobal(key);
-        global::DebugTimer.DebugTimer.StopGlobal(key);
+        DebugTimer.StartGlobal(key);
+        DebugTimer.StopGlobal(key);
+        DebugTimer.StopGlobal(key);
 
         Assert.Equal(1, callCount);
     }
@@ -71,7 +72,7 @@ public class DebugTimerTests
     [Fact]
     public void GenerateKey_WithTag_ReturnsExpectedKey()
     {
-        var method = typeof(global::DebugTimer.DebugTimer).GetMethod("GenerateKey", BindingFlags.NonPublic | BindingFlags.Static);
+        var method = typeof(DebugTimer).GetMethod("GenerateKey", BindingFlags.NonPublic | BindingFlags.Static);
         Assert.NotNull(method);
 
         var key = (string)method!.Invoke(null, new object?[] { "SampleFile", "Run", "MyTag" })!;
@@ -82,7 +83,7 @@ public class DebugTimerTests
     [Fact]
     public void GenerateKey_WithoutTag_DoesNotAddTrailingSeparator()
     {
-        var method = typeof(global::DebugTimer.DebugTimer).GetMethod("GenerateKey", BindingFlags.NonPublic | BindingFlags.Static);
+        var method = typeof(DebugTimer).GetMethod("GenerateKey", BindingFlags.NonPublic | BindingFlags.Static);
         Assert.NotNull(method);
 
         var key = (string)method!.Invoke(null, new object?[] { "SampleFile", "Run", null })!;
@@ -96,15 +97,15 @@ public class DebugTimerTests
         string? loggedKey = null;
         var callCount = 0;
 
-        global::DebugTimer.DebugTimer.Initialize((_, _, _, key) =>
+        DebugTimer.Initialize((_, _, _, key) =>
         {
             callCount++;
             loggedKey = key;
         });
 
-        global::DebugTimer.DebugTimer.Start("TAG-A", filePath: @"C:\Temp\SampleFile.cs", caller: "MethodA");
+        DebugTimer.Start("TAG-A", filePath: @"C:\Temp\SampleFile.cs", caller: "MethodA");
         Thread.Sleep(10);
-        global::DebugTimer.DebugTimer.Stop("TAG-A", filePath: @"C:\Temp\SampleFile.cs", caller: "MethodA");
+        DebugTimer.Stop("TAG-A", filePath: @"C:\Temp\SampleFile.cs", caller: "MethodA");
 
         Assert.Equal(1, callCount);
         Assert.Equal("SampleFile - MethodA - TAG-A", loggedKey);
@@ -116,15 +117,15 @@ public class DebugTimerTests
         string? loggedKey = null;
         var callCount = 0;
 
-        global::DebugTimer.DebugTimer.Initialize((_, _, _, key) =>
+        DebugTimer.Initialize((_, _, _, key) =>
         {
             callCount++;
             loggedKey = key;
         });
 
-        global::DebugTimer.DebugTimer.Start(42, filePath: @"C:\Temp\SampleFile.cs", caller: "MethodB");
+        DebugTimer.Start(42, filePath: @"C:\Temp\SampleFile.cs", caller: "MethodB");
         Thread.Sleep(10);
-        global::DebugTimer.DebugTimer.Stop(42, filePath: @"C:\Temp\SampleFile.cs", caller: "MethodB");
+        DebugTimer.Stop(42, filePath: @"C:\Temp\SampleFile.cs", caller: "MethodB");
 
         Assert.Equal(1, callCount);
         Assert.Equal("SampleFile - MethodB - 42", loggedKey);

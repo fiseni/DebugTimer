@@ -4,6 +4,7 @@
   <Import Project="..\ProjectMetadata.targets" />
 
   <PropertyGroup>
+    <RootNamespace>Pozitron.Diagnostics</RootNamespace>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
@@ -15,7 +16,7 @@
     <Title>DebugTimer</Title>
     <Description>A simple source-only timer for development diagnostics.</Description>
     <Summary>A simple source-only timer for development diagnostics.</Summary>
-    <PackageTags>fiseni pozitron debug timer</PackageTags>
+    <PackageTags>fiseni pozitron diagnostics debug timer</PackageTags>
     <PackageReleaseNotes>
       Refer to Releases page for details.
       https://github.com/fiseni/DebugTimer/releases
