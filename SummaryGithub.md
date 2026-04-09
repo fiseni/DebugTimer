@@ -3,7 +3,7 @@
 
 |||
 |:---|:---|
-| Generated on: | 04/09/2026 - 12:00:45 |
+| Generated on: | 04/09/2026 - 12:06:29 |
 | Parser: | OpenCover |
 | Assemblies: | 1 |
 | Classes: | 1 |
@@ -17,7 +17,7 @@
 | Covered branches: | 6 |
 | Total branches: | 6 |
 | **Method coverage:** | [Feature is only available for sponsors](https://reportgenerator.io/pro) |
-| Tag: | 7_24189004136 |
+| Tag: | 8_24189236022 |
 
 </details>
 
