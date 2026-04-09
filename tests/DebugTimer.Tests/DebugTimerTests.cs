@@ -1,5 +1,6 @@
 ﻿using Pozitron.Diagnostics;
 using System;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using Xunit;
@@ -96,6 +97,7 @@ public class DebugTimerTests
     {
         string? loggedKey = null;
         var callCount = 0;
+        var filePath = Path.Combine("tmp", "SampleFile.cs");
 
         DebugTimer.Initialize((_, _, _, key) =>
         {
@@ -103,9 +105,9 @@ public class DebugTimerTests
             loggedKey = key;
         });
 
-        DebugTimer.Start("TAG-A", filePath: @"C:\Temp\SampleFile.cs", caller: "MethodA");
+        DebugTimer.Start("TAG-A", filePath: filePath, caller: "MethodA");
         Thread.Sleep(10);
-        DebugTimer.Stop("TAG-A", filePath: @"C:\Temp\SampleFile.cs", caller: "MethodA");
+        DebugTimer.Stop("TAG-A", filePath: filePath, caller: "MethodA");
 
         Assert.Equal(1, callCount);
         Assert.Equal("SampleFile - MethodA - TAG-A", loggedKey);
@@ -116,6 +118,7 @@ public class DebugTimerTests
     {
         string? loggedKey = null;
         var callCount = 0;
+        var filePath = Path.Combine("tmp", "SampleFile.cs");
 
         DebugTimer.Initialize((_, _, _, key) =>
         {
@@ -123,9 +126,9 @@ public class DebugTimerTests
             loggedKey = key;
         });
 
-        DebugTimer.Start(42, filePath: @"C:\Temp\SampleFile.cs", caller: "MethodB");
+        DebugTimer.Start(42, filePath: filePath, caller: "MethodB");
         Thread.Sleep(10);
-        DebugTimer.Stop(42, filePath: @"C:\Temp\SampleFile.cs", caller: "MethodB");
+        DebugTimer.Stop(42, filePath: filePath, caller: "MethodB");
 
         Assert.Equal(1, callCount);
         Assert.Equal("SampleFile - MethodB - 42", loggedKey);
