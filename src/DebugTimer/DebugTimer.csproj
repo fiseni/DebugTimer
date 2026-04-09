@@ -13,8 +13,8 @@
     <Version>0.1.0</Version>
     <PackageId>DebugTimer</PackageId>
     <Title>DebugTimer</Title>
-    <Description>A simple source-only timer for development diagnostic.</Description>
-    <Summary>A simple source-only timer for development diagnostic.</Summary>
+    <Description>A simple source-only timer for development diagnostics.</Description>
+    <Summary>A simple source-only timer for development diagnostics.</Summary>
     <PackageTags>fiseni pozitron debug timer</PackageTags>
     <PackageReleaseNotes>
       Refer to Releases page for details.
