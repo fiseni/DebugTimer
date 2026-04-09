@@ -1,5 +1,8 @@
 ﻿namespace Pozitron.Diagnostics
 {
+    // We'll disable NRT warnings to keep the code compatible with C# 7.3
+#pragma warning disable CS8600, CS8601, CS8602, CS8603, CS8604, CS8618, CS8625
+
     using System;
     using System.Collections.Concurrent;
     using System.Diagnostics;
@@ -118,4 +121,6 @@
             return $"{typeName} - {caller}{tag}";
         }
     }
+
+#pragma warning restore CS8600, CS8601, CS8602, CS8603, CS8604, CS8618, CS8625
 }
