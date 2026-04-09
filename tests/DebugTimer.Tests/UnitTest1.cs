@@ -1,12 +1,92 @@
-﻿using Xunit;
+﻿using System;
+using System.Reflection;
+using System.Threading;
+using Xunit;
 
 namespace DebugTimer.Tests;
 
-public class UnitTest1
+[CollectionDefinition("DebugTimerNonParallel", DisableParallelization = true)]
+public class DebugTimerCollectionDefinition
+{
+}
+
+[Collection("DebugTimerNonParallel")]
+public class DebugTimerTests
 {
     [Fact]
-    public void Test1()
+    public void StopGlobal_LogsElapsed_WhenTimerExists()
     {
+        string? messageTemplate = null;
+        string? source = null;
+        long elapsed = -1;
+        string? loggedKey = null;
 
+        global::DebugTimer.DebugTimer.Initialize((template, src, ms, key) =>
+        {
+            messageTemplate = template;
+            source = src;
+            elapsed = ms;
+            loggedKey = key;
+        });
+
+        var key = "global-key-" + Guid.NewGuid().ToString("N");
+
+        global::DebugTimer.DebugTimer.StartGlobal(key);
+        Thread.Sleep(10);
+        global::DebugTimer.DebugTimer.StopGlobal(key);
+
+        Assert.Equal("{DebugTimer}: Elapsed: {DebugTimerElapsed,8} ms | {DebugTimerKey}", messageTemplate);
+        Assert.Equal("DebugTimer", source);
+        Assert.Equal(key, loggedKey);
+        Assert.True(elapsed >= 0);
+    }
+
+    [Fact]
+    public void StopGlobal_DoesNotLog_WhenTimerDoesNotExist()
+    {
+        var callCount = 0;
+
+        global::DebugTimer.DebugTimer.Initialize((_, _, _, _) => callCount++);
+
+        global::DebugTimer.DebugTimer.StopGlobal("missing-" + Guid.NewGuid().ToString("N"));
+
+        Assert.Equal(0, callCount);
+    }
+
+    [Fact]
+    public void StopGlobal_LogsOnlyOnce_ForSameKey()
+    {
+        var callCount = 0;
+        var key = "single-stop-" + Guid.NewGuid().ToString("N");
+
+        global::DebugTimer.DebugTimer.Initialize((_, _, _, _) => callCount++);
+
+        global::DebugTimer.DebugTimer.StartGlobal(key);
+        global::DebugTimer.DebugTimer.StopGlobal(key);
+        global::DebugTimer.DebugTimer.StopGlobal(key);
+
+        Assert.Equal(1, callCount);
+    }
+
+    [Fact]
+    public void GenerateKey_WithTag_ReturnsExpectedKey()
+    {
+        var method = typeof(global::DebugTimer.DebugTimer).GetMethod("GenerateKey", BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.NotNull(method);
+
+        var key = (string)method!.Invoke(null, new object?[] { "SampleFile", "Run", "MyTag" })!;
+
+        Assert.Equal("SampleFile - Run - MyTag", key);
+    }
+
+    [Fact]
+    public void GenerateKey_WithoutTag_DoesNotAddTrailingSeparator()
+    {
+        var method = typeof(global::DebugTimer.DebugTimer).GetMethod("GenerateKey", BindingFlags.NonPublic | BindingFlags.Static);
+        Assert.NotNull(method);
+
+        var key = (string)method!.Invoke(null, new object?[] { "SampleFile", "Run", null })!;
+
+        Assert.Equal("SampleFile - Run", key);
     }
 }
