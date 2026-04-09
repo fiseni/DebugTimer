@@ -221,7 +221,7 @@ var assemblies = [
   {
     "name": "DebugTimer",
     "classes": [
-      { "name": "Pozitron.Diagnostics.DebugTimer", "rp": "DebugTimer_DebugTimer.html", "cl": 20, "ucl": 0, "cal": 20, "tl": 121, "cb": 6, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "Pozitron.Diagnostics.DebugTimer", "rp": "DebugTimer_DebugTimer.html", "cl": 20, "ucl": 0, "cal": 20, "tl": 126, "cb": 6, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
 ];
 

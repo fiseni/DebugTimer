@@ -3,7 +3,7 @@
 
 |||
 |:---|:---|
-| Generated on: | 04/09/2026 - 11:42:31 |
+| Generated on: | 04/09/2026 - 11:58:56 |
 | Parser: | OpenCover |
 | Assemblies: | 1 |
 | Classes: | 1 |
@@ -12,12 +12,12 @@
 | Covered lines: | 20 |
 | Uncovered lines: | 0 |
 | Coverable lines: | 20 |
-| Total lines: | 121 |
+| Total lines: | 126 |
 | **Branch coverage:** | 100% (6 of 6) |
 | Covered branches: | 6 |
 | Total branches: | 6 |
 | **Method coverage:** | [Feature is only available for sponsors](https://reportgenerator.io/pro) |
-| Tag: | 5_24188288667 |
+| Tag: | 6_24188929680 |
 
 </details>
 
