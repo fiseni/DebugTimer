@@ -35,7 +35,7 @@ public class DebugTimerTests
         Thread.Sleep(10);
         global::DebugTimer.DebugTimer.StopGlobal(key);
 
-        Assert.Equal("{DebugTimer}: Elapsed: {DebugTimerElapsed,8} ms | {DebugTimerKey}", messageTemplate);
+        Assert.Equal("{DebugTimer} - Elapsed: {DebugTimerElapsed,8} ms | {DebugTimerKey}", messageTemplate);
         Assert.Equal("DebugTimer", source);
         Assert.Equal(key, loggedKey);
         Assert.True(elapsed >= 0);

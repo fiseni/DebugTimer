@@ -95,12 +95,12 @@
                 stopWatch.Stop();
                 if (_logger != null)
                 {
-                    const string messageTemplate = "{DebugTimer}: Elapsed: {DebugTimerElapsed,8} ms | {DebugTimerKey}";
+                    const string messageTemplate = "{DebugTimer} - Elapsed: {DebugTimerElapsed,8} ms | {DebugTimerKey}";
                     _logger(messageTemplate, "DebugTimer", stopWatch.ElapsedMilliseconds, key);
                 }
                 else
                 {
-                    const string messageTemplate = "{0}: Elapsed: {1,8} ms | {2}";
+                    const string messageTemplate = "{0} - Elapsed: {1,8} ms | {2}";
                     Debug.Print(messageTemplate, "DebugTimer", stopWatch.ElapsedMilliseconds, key);
                 }
             }
