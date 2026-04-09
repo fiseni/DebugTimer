@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package Metadata">
-    <Version>0.4.0</Version>
+    <Version>0.5.0</Version>
     <PackageId>DebugTimer</PackageId>
     <Title>DebugTimer</Title>
     <Description>A simple source-only timer for development diagnostics.</Description>
@@ -25,9 +25,7 @@
 
   <PropertyGroup Label="Build and Packaging">
     <IsPackable>true</IsPackable>
-    <DevelopmentDependency>true</DevelopmentDependency>
     <IncludeBuildOutput>false</IncludeBuildOutput>
-    <ContentTargetFolders>contentFiles</ContentTargetFolders>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
   </PropertyGroup>
@@ -37,7 +35,8 @@
           Exclude="bin\**;obj\**"
           Pack="true"
           PackagePath="build\src\%(RecursiveDir)%(Filename)%(Extension)" />
-    <None Include="build\*" Pack="true" PackagePath="build\" />
+    <None Include="build\DebugTimer.targets" Pack="true" PackagePath="build\DebugTimer.targets" />
+    <None Include="build\DebugTimer.props" Pack="true" PackagePath="buildTransitive\DebugTimer.props" />
   </ItemGroup>
 
 </Project>
