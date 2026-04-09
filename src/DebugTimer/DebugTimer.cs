@@ -72,9 +72,7 @@
         /// <param name="key">The unique timer key.</param>
         [Conditional("DEBUG_TIMER")]
         public static void StartGlobal(string key)
-        {
-            _timers.AddOrUpdate(key, Stopwatch.StartNew(), (s, x) => { x.Restart(); return x; });
-        }
+            => StartCore(key);
 
         /// <summary>
         /// Stops a timer by global key and writes the elapsed time using the configured logger or <see cref="Debug.Print(string, object[])"/>.
@@ -82,6 +80,14 @@
         /// <param name="key">The unique timer key.</param>
         [Conditional("DEBUG_TIMER")]
         public static void StopGlobal(string key)
+            => StopCore(key);
+
+        private static void StartCore(string key)
+        {
+            _timers.AddOrUpdate(key, Stopwatch.StartNew(), (s, x) => { x.Restart(); return x; });
+        }
+
+        private static void StopCore(string key)
         {
 
             if (_timers.TryRemove(key, out var stopWatch))
@@ -101,10 +107,10 @@
         }
 
         private static void GenerateKeyAndStart(string callerTypeName, string caller, string tag = null)
-            => StartGlobal(GenerateKey(callerTypeName, caller, tag));
+            => StartCore(GenerateKey(callerTypeName, caller, tag));
 
         private static void GenerateKeyAndStop(string callerTypeName, string caller, string tag = null)
-            => StopGlobal(GenerateKey(callerTypeName, caller, tag));
+            => StopCore(GenerateKey(callerTypeName, caller, tag));
 
         private static string GenerateKey(string typeName, string caller, string tag = null)
         {

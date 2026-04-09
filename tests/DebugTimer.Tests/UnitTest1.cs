@@ -103,7 +103,7 @@ public class DebugTimerTests
         });
 
         global::DebugTimer.DebugTimer.Start("TAG-A", filePath: @"C:\Temp\SampleFile.cs", caller: "MethodA");
-        Thread.Sleep(5);
+        Thread.Sleep(10);
         global::DebugTimer.DebugTimer.Stop("TAG-A", filePath: @"C:\Temp\SampleFile.cs", caller: "MethodA");
 
         Assert.Equal(1, callCount);
@@ -123,7 +123,7 @@ public class DebugTimerTests
         });
 
         global::DebugTimer.DebugTimer.Start(42, filePath: @"C:\Temp\SampleFile.cs", caller: "MethodB");
-        Thread.Sleep(5);
+        Thread.Sleep(10);
         global::DebugTimer.DebugTimer.Stop(42, filePath: @"C:\Temp\SampleFile.cs", caller: "MethodB");
 
         Assert.Equal(1, callCount);
