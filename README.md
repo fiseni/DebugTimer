@@ -10,7 +10,7 @@
 
 `DebugTimer` is a lightweight **source-only** library for measuring elapsed time in development diagnostics.
 
-It is designed to have near-zero impact when disabled: all timing calls are marked with `[Conditional("DEBUG_TIMER")]`, so they are omitted by the compiler unless the symbol is defined.
+It has zero impact when disabled, all timing calls are marked with `[Conditional("DEBUG_TIMER")]`, so they are omitted by the compiler unless the symbol is defined.
 
 ## Features
 
