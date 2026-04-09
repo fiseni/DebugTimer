@@ -1,4 +1,9 @@
 <Solution>
+  <Folder Name="/Samples/">
+    <Project Path="samples/SampleApp/SampleApp.csproj" />
+    <Project Path="samples/SampleLib1/SampleLib1.csproj" />
+    <Project Path="samples/SampleLib2/SampleLib2.csproj" />
+  </Folder>
   <Folder Name="/_meta/">
     <File Path=".editorconfig" />
     <File Path=".gitattributes" />

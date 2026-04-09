@@ -11,6 +11,9 @@
     <PackageVersion Include="xunit.v3" Version="3.2.2" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
   </ItemGroup>
+  <ItemGroup Label="Sampel projects dependencies">
+    <PackageVersion Include="DebugTimer" Version="0.5.0" />
+  </ItemGroup>
   <ItemGroup Label="Transitive Updates">
   </ItemGroup>
 </Project>
