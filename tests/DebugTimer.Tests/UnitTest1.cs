@@ -89,4 +89,44 @@ public class DebugTimerTests
 
         Assert.Equal("SampleFile - Run", key);
     }
+
+    [Fact]
+    public void StartStop_WithStringTag_LogsExpectedKey()
+    {
+        string? loggedKey = null;
+        var callCount = 0;
+
+        global::DebugTimer.DebugTimer.Initialize((_, _, _, key) =>
+        {
+            callCount++;
+            loggedKey = key;
+        });
+
+        global::DebugTimer.DebugTimer.Start("TAG-A", filePath: @"C:\Temp\SampleFile.cs", caller: "MethodA");
+        Thread.Sleep(5);
+        global::DebugTimer.DebugTimer.Stop("TAG-A", filePath: @"C:\Temp\SampleFile.cs", caller: "MethodA");
+
+        Assert.Equal(1, callCount);
+        Assert.Equal("SampleFile - MethodA - TAG-A", loggedKey);
+    }
+
+    [Fact]
+    public void StartStop_WithIntTag_LogsExpectedKey()
+    {
+        string? loggedKey = null;
+        var callCount = 0;
+
+        global::DebugTimer.DebugTimer.Initialize((_, _, _, key) =>
+        {
+            callCount++;
+            loggedKey = key;
+        });
+
+        global::DebugTimer.DebugTimer.Start(42, filePath: @"C:\Temp\SampleFile.cs", caller: "MethodB");
+        Thread.Sleep(5);
+        global::DebugTimer.DebugTimer.Stop(42, filePath: @"C:\Temp\SampleFile.cs", caller: "MethodB");
+
+        Assert.Equal(1, callCount);
+        Assert.Equal("SampleFile - MethodB - 42", loggedKey);
+    }
 }
