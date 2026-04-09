@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package Metadata">
-    <Version>0.5.0</Version>
+    <Version>0.6.0</Version>
     <PackageId>DebugTimer</PackageId>
     <Title>DebugTimer</Title>
     <Description>A simple source-only timer for development diagnostics.</Description>
@@ -36,6 +36,7 @@
           Pack="true"
           PackagePath="build\src\%(RecursiveDir)%(Filename)%(Extension)" />
     <None Include="build\DebugTimer.targets" Pack="true" PackagePath="build\DebugTimer.targets" />
+    <None Include="build\DebugTimer.props" Pack="true" PackagePath="build\DebugTimer.props" />
     <None Include="build\DebugTimer.props" Pack="true" PackagePath="buildTransitive\DebugTimer.props" />
   </ItemGroup>
 
