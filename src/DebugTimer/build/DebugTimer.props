@@ -1,0 +1,7 @@
+<Project>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DefineConstants>$(DefineConstants);DEBUG_TIMER</DefineConstants>
+  </PropertyGroup>
+  
+</Project>
