@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>false</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup Label="Package dependencies">
+  </ItemGroup>
+  <ItemGroup Label="Test projects dependencies">
+  </ItemGroup>
+  <ItemGroup Label="Transitive Updates">
+  </ItemGroup>
+</Project>
