@@ -109,7 +109,7 @@ public sealed class ImportService
 
         DebugTimer.Start("Inner");
         // inner code to measure
-        DebugTimer.Stop("Inner);
+        DebugTimer.Stop("Inner");
 
         DebugTimer.Stop("Outer");
     }
