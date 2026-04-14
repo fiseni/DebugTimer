@@ -8,7 +8,7 @@
 
 ---
 
-`DebugTimer` is a lightweight **source-only** library for measuring elapsed time in development diagnostics.
+DebugTimer is a simple **source-only** library for measuring elapsed time in development diagnostics.
 
 It has zero impact when disabled, all timing calls are marked with `[Conditional("DEBUG_TIMER")]`, so they are omitted by the compiler unless the symbol is defined.
 
@@ -29,9 +29,7 @@ dotnet add package DebugTimer
 
 ## Enabling timing
 
-Timing methods execute only when `DEBUG_TIMER` is defined.
-
-This package includes a `build/DebugTimer.props` file that adds `DEBUG_TIMER` for **Debug** configuration:
+Timing methods execute only when `DEBUG_TIMER` is defined. This package includes a props file that adds `DEBUG_TIMER` for **Debug** configuration:
 
 ```xml
 <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
@@ -100,9 +98,9 @@ DebugTimer - Elapsed:       31 ms | ReportService - BuildReport - 1
 ```csharp
 using Pozitron.Diagnostics;
 
-public sealed class ImportService
+public sealed class ReportService
 {
-    public void LoadData()
+    public void BuildReport()
     {
         DebugTimer.Start("Outer");
         // code to measure
